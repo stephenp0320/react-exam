@@ -1,4 +1,4 @@
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -9,12 +9,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
-import StarRateIcon from "@mui/icons-material/StarRate";
+import StarRateIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import IconButton from "@mui/material/IconButton";
 import { Grid } from "@mui/material";
 import img from '/Users/stephenpower/Desktop/year4/web_app_two/react-movie-labs/movies/src/components/images/film-poster-placeholder.png'
 import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
+
 
 
 export default function MovieCard({ movie, action }) {
@@ -66,25 +67,35 @@ export default function MovieCard({ movie, action }) {
               {movie.release_date}
             </Typography>
           </Grid>
-          <Grid size={{ xs: 6 }}>
+          {/* <Grid size={{ xs: 6 }}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
+          </Grid> */}
+
+          <Grid size={{ xs: 6 }}>
+            <Typography variant="h6" component="p">
+              <StarRateIcon fontSize="small" />
+              {"  "} {Math.round(movie.vote_average) * 10}{"%"}
+            </Typography>
           </Grid>
+          
+
+
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-      
-      {action(movie)}
-    
-      <Link to={`/movies/${movie.id}`}>
-        <Button variant="outlined" size="medium" color="primary">
-          More Info ...
-        </Button>
-      </Link>
-      
-    </CardActions>
+
+        {action(movie)}
+
+        <Link to={`/movies/${movie.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            More Info ...
+          </Button>
+        </Link>
+
+      </CardActions>
 
     </Card>
   );
